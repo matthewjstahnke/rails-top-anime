@@ -1,0 +1,13 @@
+<nav class="purple darken-3">
+    <%= link_to "Home", root_path, class: "brand-logo" %>
+    <ul class="right">
+      <% unless logged_in? %>
+        <li><%= link_to "Login", new_user_path %></li>
+        <li><%= link_to "Signup", signup_path %></li>
+      <% else %>
+        <li><%= link_to "Anime List", animes_path %></li>
+        <li><%= link_to "Add Anime", new_anime_path %></li>
+        <li><%= link_to "Logout", logout_path %></li>
+      <% end %>
+    </ul>
+</nav>
