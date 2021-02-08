@@ -1,5 +1,6 @@
 class AnimesController < ApplicationController
     before_action :find_anime, only: [:show, :edit, :update, :destroy]
+    
 
     def index
         @animes = Anime.all
@@ -18,6 +19,7 @@ class AnimesController < ApplicationController
         if @anime.save
             redirect_to animes_path
         else
+            anime_errors
             render :new
         end
     end
@@ -29,16 +31,22 @@ class AnimesController < ApplicationController
         if @anime.update(anime_params)
             redirect_to anime_path(@anime)
         else
+            anime_errors
             render :edit
         end
     end
 
     def destroy
         @anime.destroy
+        flash[:notice] = "#{@anime.title} was deleted."
         redirect_to animes_path
     end
 
     private
+
+        def anime_errors
+            flash.now[:error] = @anime.errors.full_messages
+        end
 
         def find_anime
             @anime = Anime.find_by_id(params[:id])
