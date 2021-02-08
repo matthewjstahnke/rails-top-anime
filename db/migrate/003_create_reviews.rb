@@ -3,7 +3,7 @@ class CreateReviews < ActiveRecord::Migration[6.0]
         create_table :reviews do |t|
             t.integer :user_id
             t.integer :anime_id
-            t.text :comment
+            t.string :comment
   
             t.timestamps
         end

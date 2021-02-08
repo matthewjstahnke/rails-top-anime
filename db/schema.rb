@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 3) do
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id"
     t.integer "anime_id"
-    t.text "comment"
+    t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
