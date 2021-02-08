@@ -1,0 +1,4 @@
+<h3> <%= @anime.title %> </h3>
+<p> <%= @review.comment %> </p>
+
+<%= link_to "Edit Review", edit_anime_review_path(@anime.id,@review.id) %>

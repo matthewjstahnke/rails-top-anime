@@ -1,0 +1,7 @@
+<h3>Top Anime</h3>
+
+<ul>
+    <% @animes.each do |anime| %> <!-- /animes/:id -->
+        <li><%= link_to anime.title, anime_path(anime)  %></li>
+    <% end %>
+</ul>

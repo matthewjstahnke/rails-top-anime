@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root(to: "static#home")
 
+  resources :animes do
+    resources :reviews
+  end 
+
   resources :users, only: [:new,:create]
 
   get "/logout", to: "sessions#logout", as: "logout"

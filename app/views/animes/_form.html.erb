@@ -1,0 +1,25 @@
+<%= form_for @anime do |f| %>
+    <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <div>
+        <%= f.label :genre %>
+        <%= f.text_field :genre %>
+    </div>
+    <div>
+        <%= f.label :release_year %>
+        <%= f.text_field :release_year %>
+    </div>
+    <div>
+        <%= f.label :episode_count %>
+        <%= f.text_field :episode_count %>
+    </div>
+    <%# <div>
+    
+    </div> %>
+
+    <%# <%=f.collection_select :id, User.all, :id, :username%> 
+
+        <%= f.submit %>
+<% end %>

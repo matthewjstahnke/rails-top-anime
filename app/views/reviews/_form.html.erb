@@ -1,0 +1,14 @@
+<%= form_for [@anime, @review] do |f| %>
+    <div>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+    </div>
+    <div>
+        <%= f.hidden_field :anime_id, :value => anime.id %>
+    </div>
+    <div>
+        <%= f.label :comment %>
+        <%= f.text_area :comment %>
+    </div>
+    <%= f.submit %>
+<% end %>
+
