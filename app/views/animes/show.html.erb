@@ -16,5 +16,7 @@
 <% @anime.reviews.each do |r| %>
     <p><%= r.comment %> -  <%= r.user.username%> </p>
     <%= link_to "Edit a Review", edit_anime_review_path(@anime.id,r.id) %>
+    <%= link_to "Delete review", anime_review_path(@anime.id, r.id), method: :delete %>    
 <% end %>
+
 

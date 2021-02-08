@@ -35,9 +35,15 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
+        @review = Review.find(params[:id])
+        @anime = Anime.find(params[:anime_id])
+        @review.destroy
+        flash[:notice] = "#{@review.comment} was deleted."
+        redirect_to anime_path(@review.anime_id)
     end
 
     private
+
         def review_params
             params.require(:review).permit(:comment,:user_id,:anime_id)
         end
