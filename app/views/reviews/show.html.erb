@@ -1,4 +1,6 @@
-<h3> <%= @anime.title %> </h3>
+<h3>Your Reveiw For - <%= @anime.title %> </h3>
 <p> <%= @review.comment %> </p>
 
 <%= link_to "Edit Review", edit_anime_review_path(@anime.id,@review.id) %>
+<br>
+<%= link_to "Back to #{@anime.title}", anime_path(@anime) %>

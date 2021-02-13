@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    before_action :find_anime, only: [:new, :show, :edit, :update, :destroy]
 
     def index
         @reviews = Review.all

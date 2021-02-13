@@ -2,21 +2,26 @@
 <p>Genre: <%= @anime.genre %></p>
 <p>Release Year: <%= @anime.release_year %></p>
 <p>Episode Count: <%= @anime.episode_count %></p>
+<%# binding.pry %>
 
+<% if @anime.user_id == current_user.id %>
+    <%= link_to "Edit", edit_anime_path(@anime) %>
 
-
-<%= link_to "Edit", edit_anime_path(@anime) %>
-
-<%= link_to "Delete", anime_path(@anime), method: "delete" %>
+    <%= link_to "Delete", anime_path(@anime), method: "delete" %>
+<% end %>
 <div>
     <%= link_to "Write a Review", new_anime_review_path(@anime) %>
 </div>
 
 <h3>Reviews</h3>
 <% @anime.reviews.each do |r| %>
+        <%# binding.pry %>
     <p><%= r.comment %> -  <%= r.user.username%> </p>
-    <%= link_to "Edit a Review", edit_anime_review_path(@anime.id,r.id) %>
-    <%= link_to "Delete review", anime_review_path(@anime.id, r.id), method: :delete %>    
+    <% if r.user_id == current_user.id %>
+        <%= link_to "Edit Review".html_safe, edit_anime_review_path(@anime.id,r.id) %>
+        <br>
+        <%= link_to "Delete Review", anime_review_path(@anime.id, r.id), method: :delete %>
+    <% end %>   
 <% end %>
 
 

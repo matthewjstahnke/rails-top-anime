@@ -4,7 +4,9 @@
       <% unless logged_in? %>
         <li><%= link_to "Login", new_user_path %></li>
         <li><%= link_to "Signup", signup_path %></li>
+        <li><%= link_to "Log in with Google", '/auth/google_oauth2', method: :post%> </li>
       <% else %>
+        <li> Hello, <%= current_user.username %></li>
         <li><%= link_to "Anime List", animes_path %></li>
         <li><%= link_to "Add Anime", new_anime_path %></li>
         <li><%= link_to "Logout", logout_path %></li>

@@ -5,6 +5,7 @@ class CreateAnimes < ActiveRecord::Migration[6.0]
             t.string :genre
             t.string :release_year
             t.integer :episode_count
+            t.integer :user_id
   
             t.timestamps
         end

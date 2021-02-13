@@ -3,10 +3,20 @@ class AnimesController < ApplicationController
     
 
     def index
-        @animes = Anime.all
+        if params[:sort] == "title"
+            @animes = Anime.anime_sort(params[:sort])
+        elsif params[:sort] == "release_year"
+            @animes = Anime.anime_sort(params[:sort])
+        elsif params[:sort] == "episode_count"
+            @animes = Anime.anime_sort(params[:sort])
+        elsif params[:sort] == "genre"
+            @animes = Anime.anime_sort(params[:sort])
+        else
+            @animes = Anime.all
+        end
     end
 
-    def show
+    def show       
     end
 
     def new
@@ -15,7 +25,7 @@ class AnimesController < ApplicationController
 
     def create
     params
-        @anime = Anime.new(anime_params)
+        @anime = current_user.animes.build(anime_params)
         if @anime.save
             redirect_to animes_path
         else
@@ -48,12 +58,8 @@ class AnimesController < ApplicationController
             flash.now[:error] = @anime.errors.full_messages
         end
 
-        def find_anime
-            @anime = Anime.find_by_id(params[:id])
-        end
-
         def anime_params
-            params.require(:anime).permit(:title, :genre, :release_year, :episode_count)
+            params.require(:anime).permit(:title, :genre, :release_year, :episode_count,:user_id)
         end
 end
 

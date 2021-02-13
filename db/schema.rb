@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 3) do
     t.string "genre"
     t.string "release_year"
     t.integer "episode_count"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

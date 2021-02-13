@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
     def logged_in?
         !!session[:user_id]
     end 
+
+    def find_anime
+        @anime = Anime.find_by_id(params[:id])
+    end
+
+    def find_review
+        @review = Review.find_by_id(params[:id])
+    end
 end
