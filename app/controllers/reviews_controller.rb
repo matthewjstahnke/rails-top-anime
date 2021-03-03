@@ -1,13 +1,12 @@
 class ReviewsController < ApplicationController
-    before_action :find_anime, only: [:new, :show, :edit, :update, :destroy]
+    before_action :find_anime,:find_review, only: [:new, :show, :edit, :update, :destroy]
+    
 
-    def index
-        @reviews = Review.all
-    end
 
     def show
         @anime = Anime.find(params[:anime_id])
         @review = Review.find(params[:id])
+        redirect_if_not_owner 
     end
 
     def new
@@ -24,9 +23,10 @@ class ReviewsController < ApplicationController
         end
     end
 
-    def edit
+    def edit        
         @review = Review.find(params[:id])
         @anime = Anime.find(params[:anime_id])
+        redirect_if_not_owner     
     end
 
     def update
@@ -47,5 +47,13 @@ class ReviewsController < ApplicationController
 
         def review_params
             params.require(:review).permit(:comment,:user_id,:anime_id)
+        end
+
+        def redirect_if_not_owner
+            redirect_to animes_path(@anime) unless @review.user_id == current_user.id
+        end
+
+        def redirect_if_not_exist
+            redirect_to egg_path unless @review
         end
 end

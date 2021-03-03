@@ -1,5 +1,6 @@
 class AnimesController < ApplicationController
-    before_action :find_anime, only: [:show, :edit, :update, :destroy]
+    before_action :redirect_if_not_logged_in
+    before_action :find_anime,:does_it_exsit, only: [:show, :edit, :update, :destroy]
     
 
     def index
@@ -16,7 +17,7 @@ class AnimesController < ApplicationController
         end
     end
 
-    def show       
+    def show
     end
 
     def new
@@ -35,6 +36,7 @@ class AnimesController < ApplicationController
     end
 
     def edit
+        redirect_if_not_owner
     end
 
     def update
@@ -60,6 +62,14 @@ class AnimesController < ApplicationController
 
         def anime_params
             params.require(:anime).permit(:title, :genre, :release_year, :episode_count,:user_id)
+        end
+
+        def redirect_if_not_owner
+            redirect_to animes_path unless @anime.user == current_user
+        end
+
+        def does_it_exsit
+            redirect_to animes_path unless @anime
         end
 end
 
