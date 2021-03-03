@@ -1,12 +1,18 @@
-<h3>Top Anime</h3>
-<h6>Sort By:</h6>
-<th><%= link_to "Title -", :sort => "title"%></th>
-<th><%= link_to "Release Year -", :sort => "release_year"%></th>
-<th><%= link_to "Episode Count -", :sort => "episode_count"%></th>
-<th><%= link_to "Genre", :sort => "genre"%></th>
+
+<h3 class="center">Top Anime</h3>
+<div class="center">
+    <b>Sort By: </b>
+    <th><%= link_to "Title -", :sort => "title"%></th>
+    <th><%= link_to "Release Year -", :sort => "release_year"%></th>
+    <th><%= link_to "Episode Count -", :sort => "episode_count"%></th>
+    <th><%= link_to "Genre", :sort => "genre"%></th>
+</div>
+
+
 <% @animes.each do |anime| %>
-    <div class="col s4 m4 l4">
-        <div class="card small purple lighten-4">
+    <div>
+        <div class="container">
+            <div class="card small purple lighten-4">
                 <div class="card-content black-text text-darken-4">
                     <span class="card-title"><%= anime.title %></li>
                     <p> -------------------------</p>

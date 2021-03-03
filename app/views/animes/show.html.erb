@@ -1,27 +1,40 @@
-<h3><%= @anime.title %></h3>
-<p>Genre: <%= @anime.genre %></p>
-<p>Release Year: <%= @anime.release_year %></p>
-<p>Episode Count: <%= @anime.episode_count %></p>
-<%# binding.pry %>
+<div class="center">
+    <h3><%= @anime.title %></h3>
+    <p>Genre: <%= @anime.genre %></p>
+    <p>Release Year: <%= @anime.release_year %></p>
+    <p>Episode Count: <%= @anime.episode_count %></p>
+</div>
+
 
 <% if @anime.user_id == current_user.id %>
-    <%= link_to "Edit", edit_anime_path(@anime) %>
-
-    <%= link_to "Delete", anime_path(@anime), method: "delete" %>
+    <div class="center">
+        <th><%= link_to "Edit", edit_anime_path(@anime) %></th>
+        <b> - </b>
+        <th><%= link_to "Delete", anime_path(@anime), method: "delete" %></th>
+    </div>
 <% end %>
-<div>
+<div class="center">
+    <br>
     <%= link_to "Write a Review", new_anime_review_path(@anime) %>
 </div>
 
-<h3>Reviews</h3>
+<h3 class="center">Reviews</h3>
 <% @anime.reviews.each do |r| %>
-        <%# binding.pry %>
-    <p><%= r.comment %> -  <%= r.user.username%> </p>
-    <% if r.user_id == current_user.id %>
-        <%= link_to "Edit Review".html_safe, edit_anime_review_path(@anime.id,r.id) %>
-        <br>
-        <%= link_to "Delete Review", anime_review_path(@anime.id, r.id), method: :delete %>
-    <% end %>   
+    <div class="container">
+        <div class="card small purple lighten-4">
+            <div class="card-content black-text text-darken-4">
+                <b><%= r.user.username %></b>
+                <p> -------------------------</p>
+                <p><%= r.comment %></p>
+                <% if r.user_id == current_user.id %>
+                    <div class="card-action purple darken-3">
+                        <%= link_to "Edit Review".html_safe, edit_anime_review_path(@anime.id,r.id) %>                
+                        <%= link_to "Delete Review", anime_review_path(@anime.id, r.id), method: :delete %>
+                    </div>
+                <% end %>
+            </div>
+        </div>                
+    </div>          
 <% end %>
 
 
