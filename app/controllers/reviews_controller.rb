@@ -1,16 +1,11 @@
 class ReviewsController < ApplicationController
-    before_action :find_anime,:find_review, only: [:new, :show, :edit, :update, :destroy]
+    before_action :find_anime_nest,:find_review, only: [:new, :show, :edit, :update, :destroy]
+    before_action :redirect_if_not_owner, only: [:show, :edit, :update, :destroy]
     
-
-
     def show
-        @anime = Anime.find(params[:anime_id])
-        @review = Review.find(params[:id])
-        redirect_if_not_owner 
     end
 
     def new
-        @anime = Anime.find(params[:anime_id])
         @review = @anime.reviews.build
     end
 
@@ -23,21 +18,15 @@ class ReviewsController < ApplicationController
         end
     end
 
-    def edit        
-        @review = Review.find(params[:id])
-        @anime = Anime.find(params[:anime_id])
-        redirect_if_not_owner     
+    def edit           
     end
 
     def update
-        @review = Review.find(params[:id])
         @review.update(review_params)
         redirect_to anime_path(@review.anime_id)
     end
 
     def destroy
-        @review = Review.find(params[:id])
-        @anime = Anime.find(params[:anime_id])
         @review.destroy
         flash[:notice] = "#{@review.comment} was deleted."
         redirect_to anime_path(@review.anime_id)
@@ -51,9 +40,5 @@ class ReviewsController < ApplicationController
 
         def redirect_if_not_owner
             redirect_to animes_path(@anime) unless @review.user_id == current_user.id
-        end
-
-        def redirect_if_not_exist
-            redirect_to egg_path unless @review
         end
 end

@@ -2,5 +2,7 @@
 <p> <%= @review.comment %> </p>
 
 <%= link_to "Edit Review", edit_anime_review_path(@anime.id,@review.id) %>
+<b> - </b>
+<%= link_to "Delete Review", anime_review_path(@anime.id, @review.id), method: :delete %>
 <br>
 <%= link_to "Back to #{@anime.title}", anime_path(@anime) %>

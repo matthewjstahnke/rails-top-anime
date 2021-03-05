@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-    #skip_before_action :verified_user, only: [:new, :create]
 
     def signup
         @user = User.new
@@ -42,6 +41,4 @@ class SessionsController < ApplicationController
     def user_params
         params.require(:user).permit(:username, :password)
     end
-
-
 end

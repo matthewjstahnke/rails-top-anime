@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
         !!session[:user_id]
     end 
 
+    def redirect_if_not_logged_in
+        redirect_to new_user_path unless logged_in?
+    end
+
     def find_anime
         @anime = Anime.find_by_id(params[:id])
     end
@@ -24,10 +28,7 @@ class ApplicationController < ActionController::Base
         @review = Review.find_by_id(params[:id])
     end
 
-    def redirect_if_not_logged_in
-        redirect_to new_user_path unless logged_in?
+    def find_anime_nest
+        @anime = Anime.find(params[:anime_id])
     end
-
-
-
 end

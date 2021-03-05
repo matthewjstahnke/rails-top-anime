@@ -25,7 +25,6 @@ class AnimesController < ApplicationController
     end
 
     def create
-    params
         @anime = current_user.animes.build(anime_params)
         if @anime.save
             redirect_to animes_path
