@@ -5,7 +5,6 @@
     <p>Episode Count: <%= @anime.episode_count %></p>
 </div>
 
-
 <% if @anime.user_id == current_user.id %>
     <div class="center">
         <th><%= link_to "Edit", edit_anime_path(@anime) %></th>
@@ -23,18 +22,22 @@
     <div class="container">
         <div class="card small purple lighten-4">
             <div class="card-content black-text text-darken-4">
-                <b><%= r.user.username %></b>
+                <b><%= link_to r.user.username.upcase, user_path(r.user) %></b>
                 <p> -------------------------</p>
                 <p><%= r.comment %></p>
-                <% if r.user_id == current_user.id %>
-                    <div class="card-action purple darken-3">
+
+                <div class="card-action purple darken-3">
+                    <%= link_to "Other Reviews By #{r.user.username}", user_path(r.user) %>
+                    <% if r.user_id == current_user.id %>
                         <%= link_to "Edit Review".html_safe, edit_anime_review_path(@anime.id,r.id) %>                
-                        <%= link_to "Delete Review", anime_review_path(@anime.id, r.id), method: :delete %>
-                    </div>
-                <% end %>
+                        <%= link_to "Delete Review", anime_review_path(@anime.id, r.id), method: :delete %>                        
+                    <% end %>
+                </div>
             </div>
         </div>                
     </div>          
 <% end %>
+
+<b><%= link_to "Reviewer Count #{@anime.users.length}", anime_users_path(@anime) %></b>
 
 

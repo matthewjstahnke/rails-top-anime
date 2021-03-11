@@ -4,6 +4,16 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
+    def index
+        @users = User.all 
+        
+    end
+
+    def show
+        find_anime
+        @user = User.find(params[:id])
+    end
+
     def create
         @user = User.find_by(username:params[:username])
         if !@user

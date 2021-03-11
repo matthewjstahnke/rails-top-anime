@@ -1,0 +1,17 @@
+<% @users.each do |user| %>
+    <div>
+        <div class="container">
+            <div class="card small purple lighten-4">
+                <div class="card-content black-text text-darken-4">
+                    <span class="card-title"><%= link_to user.username, user_path(user) %></li>
+                    <p>Number of Reviews: <%= user.reviews.length %></p>
+
+                    <div  class="card-action purple darken-3">
+                        <%= link_to "View Reviews", user_path(user) %> 
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

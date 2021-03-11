@@ -4,16 +4,10 @@ class AnimesController < ApplicationController
     
 
     def index
-        if params[:sort] == "title"
-            @animes = Anime.anime_sort(params[:sort])
-        elsif params[:sort] == "release_year"
-            @animes = Anime.anime_sort(params[:sort])
-        elsif params[:sort] == "episode_count"
-            @animes = Anime.anime_sort(params[:sort])
-        elsif params[:sort] == "genre"
+        if params[:sort] 
             @animes = Anime.anime_sort(params[:sort])
         else
-            @animes = Anime.all
+            @animes = Anime.all.anime_popular
         end
     end
 

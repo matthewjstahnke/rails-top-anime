@@ -7,4 +7,5 @@ class Anime < ApplicationRecord
     validates :release_year, presence: true
     validates :episode_count, presence: true
     scope :anime_sort, ->(sort) { order(sort) }
+    scope :anime_popular, -> {order("reviews_count desc") }
 end

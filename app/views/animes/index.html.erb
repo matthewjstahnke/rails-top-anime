@@ -5,7 +5,8 @@
     <th><%= link_to "Title -", :sort => "title"%></th>
     <th><%= link_to "Release Year -", :sort => "release_year"%></th>
     <th><%= link_to "Episode Count -", :sort => "episode_count"%></th>
-    <th><%= link_to "Genre", :sort => "genre"%></th>
+    <th><%= link_to "Genre -", :sort => "genre"%></th>
+    <th><%= link_to "Popular", :sort => "reviews_count desc"%></th>
 </div>
 
 
@@ -19,6 +20,7 @@
                     <p>Year of Release - <%= anime.release_year %></p>
                     <p>Episodes - <%= anime.episode_count %></p>
                     <p>Genre - <%= anime.genre %></p>
+                    <p>Number of Reviews - <%= anime.reviews_count %></p>
                     <div  class="card-action purple darken-3">
                         <%= link_to "View Reviews", anime_path(anime) %> 
                         <%= link_to "Write a Review", new_anime_review_path(anime) %>
@@ -28,4 +30,3 @@
         </div>
     </div>
 <% end %>
-<%# binding.pry %>

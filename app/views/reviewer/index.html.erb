@@ -1,0 +1,7 @@
+<h3>Reviewer's of <%= @anime.title %></h3>
+<b>Click Username to See Other Animes Reviewed by Reviewer</b>
+<p>----------------------------</p>
+<% @anime.users.each do |reviewer| %> 
+    <%= link_to reviewer.username, user_path(reviewer) %>
+    <p>----------------------------</p>
+<% end %>

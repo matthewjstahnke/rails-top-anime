@@ -3,9 +3,10 @@ Rails.application.routes.draw do
 
   resources :animes do
     resources :reviews, except: [:index]
+    get "/users" => "reviewer#index"
   end 
 
-  resources :users, only: [:new,:create]
+  resources :users, except: [:edit,:destroy]
 
   get "/logout", to: "sessions#logout", as: "logout"
   get "/signup", to: "sessions#signup", as: "signup"
