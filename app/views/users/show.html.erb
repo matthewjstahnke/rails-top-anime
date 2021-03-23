@@ -1,11 +1,13 @@
 <h3><%= @user.username%>'s Page</h3>
 <b>Anime Added by <%=@user.username%></b>
-<% @user.created_animes.each do |anime| %>
+<% @user.created_animes.anime_popular.each do |anime| %>
     <li><%= link_to anime.title, anime_path(anime) %></li> 
 <% end %>
 <div>
     <b>Anime Reviewed by <%=@user.username%></b>
-    <% @user.animes.each do |reviewed| %>   
-        <li><%= link_to reviewed.title, anime_path(reviewed) %></li>    
+    <% @user.animes.anime_popular.each do |reviewed| %>   
+        <li><%= link_to reviewed.title, anime_path(reviewed) %>(<%= reviewed.reviews_count %>) </li>
+           
     <% end %>
 </div>
+

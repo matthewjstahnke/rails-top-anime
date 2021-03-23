@@ -8,6 +8,12 @@
     <th><%= link_to "Genre -", :sort => "genre"%></th>
     <th><%= link_to "Popular", :sort => "reviews_count desc"%></th>
 </div>
+<div class="center">
+    <b>Filter By genre: </b>
+    <th><%= link_to "Sports -", :genre => "Sports"%></th>
+    <th><%= link_to "Action -", :genre => "Action"%></th>
+
+</div>
 
 
 <% @animes.each do |anime| %>

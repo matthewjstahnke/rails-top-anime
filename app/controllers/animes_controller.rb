@@ -6,6 +6,8 @@ class AnimesController < ApplicationController
     def index
         if params[:sort] 
             @animes = Anime.anime_sort(params[:sort])
+        elsif params[:genre]
+            @animes = Anime.filter_genre(params[:genre])
         else
             @animes = Anime.all.anime_popular
         end
